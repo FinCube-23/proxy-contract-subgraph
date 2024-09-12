@@ -23,4 +23,24 @@ dataSources:
       eventHandlers:
         - event: Upgraded(indexed address)
           handler: handleUpgraded
+        - event: Initialized(uint64)
+          handler: handleInitialized
+        - event: MemberApproved(indexed address)
+          handler: handleMemberApproved
+        - event: MemberRegistered(indexed address,string)
+          handler: handleMemberRegistered
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: ProposalAdded(indexed uint8,indexed uint256,bytes)
+          handler: handleProposalAdded
+        - event: ProposalCanceled(indexed uint256)
+          handler: handleProposalCanceled
+        - event: ProposalCreated(uint256,address,address[],uint256[],string[],bytes[],uint256,uint256,string)
+          handler: handleProposalCreated
+        - event: ProposalExecuted(indexed uint256)
+          handler: handleProposalExecuted
+        - event: Upgraded(indexed address)
+          handler: handleUpgraded
+        - event: VoteCast(indexed address,uint256,uint8,uint256,string)
+          handler: handleVoteCast
       file: ERC1967Proxy/ERC1967Proxy.wasm
