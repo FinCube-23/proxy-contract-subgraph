@@ -1,0 +1,53 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: FinCubeDAO
+    network: polygon-amoy
+    source:
+      address: "0xb486C0B3814C22E0Add70641d00040e04f7b9C4b"
+      abi: FinCubeDAO
+      startBlock: 11028240
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Initialized
+        - MemberApproved
+        - MemberRegistered
+        - OwnershipTransferred
+        - ProposalAdded
+        - ProposalCanceled
+        - ProposalCreated
+        - ProposalExecuted
+        - Upgraded
+        - VoteCast
+      abis:
+        - name: FinCubeDAO
+          file: FinCubeDAO/FinCubeDAO.json
+      eventHandlers:
+        - event: Initialized(uint64)
+          handler: handleInitialized
+        - event: MemberApproved(indexed address)
+          handler: handleMemberApproved
+        - event: MemberRegistered(indexed address,string)
+          handler: handleMemberRegistered
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: ProposalAdded(indexed uint8,indexed uint256,bytes)
+          handler: handleProposalAdded
+        - event: ProposalCanceled(indexed uint256)
+          handler: handleProposalCanceled
+        - event: ProposalCreated(uint256,address,address[],uint256[],string[],bytes[],uint256,uint256,string)
+          handler: handleProposalCreated
+        - event: ProposalExecuted(indexed uint256)
+          handler: handleProposalExecuted
+        - event: Upgraded(indexed address)
+          handler: handleUpgraded
+        - event: VoteCast(indexed address,uint256,uint8,uint256,string)
+          handler: handleVoteCast
+      file: FinCubeDAO/FinCubeDAO.wasm
