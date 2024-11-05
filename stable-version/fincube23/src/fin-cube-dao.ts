@@ -1,3 +1,4 @@
+import { Bytes } from "@graphprotocol/graph-ts"
 import {
   Initialized as InitializedEvent,
   MemberApproved as MemberApprovedEvent,
@@ -113,7 +114,7 @@ export function handleProposalCreated(event: ProposalCreatedEvent): void {
   )
   entity.proposalId = event.params.proposalId
   entity.proposer = event.params.proposer
-  entity.targets = event.params.targets
+  entity.targets = changetype<Bytes[]>(event.params.targets)
   entity.values = event.params.values
   entity.signatures = event.params.signatures
   entity.calldatas = event.params.calldatas
